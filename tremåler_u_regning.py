@@ -110,9 +110,10 @@ for k in range(0, len(a_ang)):
         x,y = (r*np.cos(a), r*np.sin(a))
         if points[i,0] < 0: 
             a = a - np.pi
-        
-
-        ax.text(x,y, f"{høyde(a_fraskive(a_ang[k]), c_fraskive(c_ang[len(points)-i-1]))}", rotation = np.rad2deg(a), ha="center", va="center", fontsize=5+(2*math.pi*r*(1/len(a_ang)*(len(a_ang)-k)*(1/4))), color=col[k])   #{round(c_fraskive(c_ang[len(points)-i-1]),2)}: 
+        h = høyde(a_fraskive(a_ang[k]), c_fraskive(c_ang[len(points)-i-1]))
+        if h >= 100:
+            h = int(round(h, 0))
+        ax.text(x,y, f"{h}", rotation = np.rad2deg(a), ha="center", va="center", fontsize=5+0.059*(len(a_ang)-k), color=col[k])   #{round(c_fraskive(c_ang[len(points)-i-1]),2)}: ||| (2*math.pi*r*(1/len(a_ang)*(len(a_ang)-k)*(1/4)))
     r -= 0.016
 
 ax.axis("off")
